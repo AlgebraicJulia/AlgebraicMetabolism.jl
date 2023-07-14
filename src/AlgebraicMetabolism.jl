@@ -6,6 +6,13 @@ using Catlab
 using Catlab.ACSets
 using Catlab.CategoricalAlgebra
 
+export draw_subobject, is_subobject,
+ SchMetabolicNet, SchReactionMetabolicNet, 
+ AbstractMetabolicNet, AbstractReactionMetabolicNet,
+ ReactionMetabolicNet
+
+draw_subobject = to_graphviz ∘ dom ∘ hom
+is_subobject(X::Subobject,Y::Subobject) = force(meet(X,Y)) == force(X)
 
 """ ACSet definition for a Biochemical Systems Theory model
 
@@ -101,6 +108,7 @@ function Base.Expr(m::ReactionMetabolicNet)
   append!(res.args, lines)
   return res
 end
+
 using Catlab.Graphics
 using Catlab.Graphics.Graphviz
 
@@ -158,11 +166,14 @@ end
 
 end
 
+using AlgebraicMetabolism
 using Catlab
 using Catlab.ACSets
 using Catlab.CategoricalAlgebra
+using Catlab.CategoricalAlgebra.CSets
 using Catlab.Graphics
 using Catlab.Graphics.Graphviz
+using Test
 
 M = AlgebraicMetabolism.M
 display(M)
@@ -178,3 +189,33 @@ end
 end
 
 to_graphviz(M)
+
+X1 = Subobject(M, V=[1]) 
+X2 = Subobject(M, V=[2]) 
+X3 = Subobject(M, V=[3]) 
+
+
+
+
+@testset "Subobject Biheyting Algebra" begin
+  draw_subobject(Subobject(M, V=[1,2]))
+  @test nparts(dom(hom(Subobject(M, V=[1,2]))), :V) == 2
+  draw_subobject(X2)
+  negate(X3) |> draw_subobject
+  negate(X1) |> draw_subobject
+
+  meet(negate(X3), negate(X1)) |> draw_subobject
+  join(negate(X3), negate(X1)) |> draw_subobject
+
+  @test dom(hom(join(negate(X3), negate(X1)))) == M
+
+  # these should be equal by value but not by identity
+  @test meet(negate(X3), negate(X1)) != X2
+  # you have to force them first to convert to the same internal storage type
+  @test force((meet(negate(X3), negate(X1)))) == force(X2)
+
+  @test is_subobject(X3, negate(join(X1, X2)))
+
+  @test force(meet(X3, negate(X1))) == force(X3)
+  @test dom(hom(negate(meet(X1, X2)))) == M
+end
