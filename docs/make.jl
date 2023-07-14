@@ -43,6 +43,7 @@ makedocs(
     "AlgebraicMetabolism.jl"=>"index.md",
     "Examples"=>Any[
       "generated/literate_example.md",
+      "generated/pullbacks.md",
     ],
     "Library Reference"=>"api.md",
   ]
