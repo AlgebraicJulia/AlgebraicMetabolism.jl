@@ -1,7 +1,7 @@
-# AlgebraicTemplate.jl
+# AlgebraicMetabolism.jl
 
 ```@meta
-CurrentModule = AlgebraicTemplate
+CurrentModule = AlgebraicMetabolism
 ```
 
 `AlgebraicTemplate.jl` is a Julia library for...
