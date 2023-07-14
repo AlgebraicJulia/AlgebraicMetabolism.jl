@@ -101,13 +101,51 @@ function Base.Expr(m::ReactionMetabolicNet)
   append!(res.args, lines)
   return res
 end
+using Catlab.Graphics
+using Catlab.Graphics.Graphviz
 
-M = @acset ReactionMetabolicNet{Float64} begin
+const GRAPH_ATTRS = Dict(:rankdir=>"LR")
+const NODE_ATTRS = Dict(:shape => "plain", :style=>"filled")
+const EDGE_ATTRS = Dict(:splines=>"splines")
+
+Graphics.to_graphviz(m::AbstractMetabolicNet; kw...) =
+  to_graphviz(to_graphviz_property_graph(m; kw...))
+
+function Graphics.to_graphviz_property_graph(m::AbstractMetabolicNet;
+  prog::AbstractString="dot", graph_attrs::AbstractDict=Dict(),
+  node_attrs::AbstractDict=Dict(), edge_attrs::AbstractDict=Dict(), name::AbstractString="G", kw...)
+  pg = PropertyGraph{Any}(; name = name, prog = prog,
+    graph = merge!(GRAPH_ATTRS, graph_attrs),
+    node = merge!(NODE_ATTRS, node_attrs),
+    edge = merge!(EDGE_ATTRS, edge_attrs),
+  )
+  vtx = map(parts(m, :V)) do v
+    γ = m[v,:γ]
+    vname = m[v,:vname]
+    add_vertex!(pg; label="$(vname)[$γ]", shape="circle", color="#6C9AC3")
+  end
+
+  for e in parts(m, :E₁)
+    src, tgt = m[e, :src₁], m[e, :tgt₁]
+    μ = m[e, :μ]
+    add_edge!(pg, src, tgt, label="$(μ)")
+  end
+
+  for e in parts(m, :E₂)
+    src, tgt = m[e, :src₂], m[e, :tgt₂]
+    f = m[e, :f]
+    add_edge!(pg, src, tgt, label="$(f)", constraint="false", style="dotted")
+  end
+  pg
+end
+
+
+M = @acset ReactionMetabolicNet{Rational} begin
   V = 3
   E₁ = 2
   E₂ = 3
   vname = [:x₁, :x₂, :x₃]
-  γ = [1/2, 1/3, 2]
+  γ = [1//2, 1//3, 2]
 
   src₁ = [1,2]
   tgt₁ = [2,3]
@@ -123,6 +161,8 @@ end
 using Catlab
 using Catlab.ACSets
 using Catlab.CategoricalAlgebra
+using Catlab.Graphics
+using Catlab.Graphics.Graphviz
 
 M = AlgebraicMetabolism.M
 display(M)
@@ -136,3 +176,5 @@ end
 @show map(parts(M,:V)) do i
   Expr(M, i)
 end
+
+to_graphviz(M)
