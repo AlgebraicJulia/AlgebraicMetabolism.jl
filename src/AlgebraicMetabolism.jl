@@ -44,13 +44,26 @@ end
 
 @acset_type ReactionNetUntyped(SchReactionMetabolicNet, index=[]) <: AbstractReactionMetabolicNet
 
+"""    ReactionMetabolicNet{R} 
+
+The main entry type for building a metabolic model with fixed parameters baked in.
+"""
 const ReactionMetabolicNet{R} = ReactionNetUntyped{Symbol, R}
 
+
+"""    edges₁(m::ReactionMetabolicNet, i::Int, j::Int)
+
+access a vector of the E₁ edges between vertex i and vertex j.
+"""
 edges₁(m::ReactionMetabolicNet, i::Int, j::Int) = intersect(
   incident(m, i, :src₁),
   incident(m, j, :tgt₁)
 )
 
+"""    edges₂(m::ReactionMetabolicNet, i::Int, j::Int)
+
+access a vector of the E₂ edges between vertex i and vertex j.
+"""
 edges₂(m::ReactionMetabolicNet, i::Int, j::Int) = intersect(
   incident(m, i, :src₂),
   incident(m, j, :tgt₂)
@@ -99,6 +112,10 @@ function dynamics_expr(m::ReactionMetabolicNet, i::Int)
   :(d.$xi = +($(summands...)))
 end
 
+"""    dynamics_expr(m::ReactionMetabolicNet)
+
+build the expression for a reaction net from the combinatorial data.
+"""
 function dynamics_expr(m::ReactionMetabolicNet)
   N = nparts(m, :V)
   lines = map(parts(m, :V)) do i
