@@ -9,7 +9,7 @@ using Catlab.CategoricalAlgebra
 export draw_subobject, is_subobject,
  SchMetabolicNet, SchReactionMetabolicNet, 
  AbstractMetabolicNet, AbstractReactionMetabolicNet,
- ReactionMetabolicNet
+ ReactionMetabolicNet, dynamics_expr
 
 draw_subobject = to_graphviz ∘ dom ∘ hom
 is_subobject(X::Subobject,Y::Subobject) = force(meet(X,Y)) == force(X)
@@ -60,15 +60,15 @@ edges₂(m::ReactionMetabolicNet, i::Int, j::Int) = intersect(
 # const OpenLabelledReactionNetOb{R,C} = OpenLabelledReactionNetObUntyped{R,C,Symbol}
 # const OpenLabelledReactionNet{R,C} = OpenLabelledReactionNetUntyped{R,C,Symbol}
 
-function Base.Expr(m::ReactionMetabolicNet, i::Int)
-  N = nparts(m, :V)
-  xi = m[i, :V]
-  :(
-    d$xi = sum(μ[$i,j] ⋅ γ[j] ⋅ prod(X[k]^f[j,k] for k in 1:N) for j in 1:N)
-  )
-end
+# function dynamics_expr(m::ReactionMetabolicNet, i::Int)
+#   N = nparts(m, :V)
+#   xi = m[i, :V]
+#   :(
+#     d$xi = sum(μ[$i,j] ⋅ γ[j] ⋅ prod(X[k]^f[j,k] for k in 1:N) for j in 1:N)
+#   )
+# end
 
-function Base.Expr(m::ReactionMetabolicNet, i::Int, j::Int, k::Int)
+function dynamics_expr(m::ReactionMetabolicNet, i::Int, j::Int, k::Int)
   edges = edges₂(m, j,k)
   if length(edges) == 0
     1
@@ -80,29 +80,29 @@ function Base.Expr(m::ReactionMetabolicNet, i::Int, j::Int, k::Int)
 end
 
 
-function Base.Expr(m::ReactionMetabolicNet, i::Int, j::Int)
+function dynamics_expr(m::ReactionMetabolicNet, i::Int, j::Int)
   e = edges₁(m, i, j)
   μ = sum(m[e, :μ])
   γ = m[j, :γ]
   factors = map(parts(m,:V)) do k
-    Expr(m, i,j,k)
+    dynamics_expr(m, i,j,k)
   end
   :(*($μ, $(factors...)))
 end
 
 
-function Base.Expr(m::ReactionMetabolicNet, i::Int)
+function dynamics_expr(m::ReactionMetabolicNet, i::Int)
   summands = map(parts(m,:V)) do j
-    Expr(m, i,j)
+    dynamics_expr(m, i,j)
   end
   xi = m[i,:vname]
   :(d.$xi = +($(summands...)))
 end
 
-function Base.Expr(m::ReactionMetabolicNet)
+function dynamics_expr(m::ReactionMetabolicNet)
   N = nparts(m, :V)
   lines = map(parts(m, :V)) do i
-    Expr(m, i)
+    dynamics_expr(m, i)
   end
   res = quote end
   append!(res.args, lines)
@@ -147,75 +147,4 @@ function Graphics.to_graphviz_property_graph(m::AbstractMetabolicNet;
   pg
 end
 
-
-M = @acset ReactionMetabolicNet{Rational} begin
-  V = 3
-  E₁ = 2
-  E₂ = 3
-  vname = [:x₁, :x₂, :x₃]
-  γ = [1//2, 1//3, 2]
-
-  src₁ = [1,2]
-  tgt₁ = [2,3]
-  μ = [7,11]
-
-  src₂ = [1,2,3]
-  tgt₂ = [2,3,3]
-  f = [1,2,3]
-end
-
-end
-
-using AlgebraicMetabolism
-using Catlab
-using Catlab.ACSets
-using Catlab.CategoricalAlgebra
-using Catlab.CategoricalAlgebra.CSets
-using Catlab.Graphics
-using Catlab.Graphics.Graphviz
-using Test
-
-M = AlgebraicMetabolism.M
-display(M)
-
-@show Expr(M)
-@show Expr(M, 1,2,3)
-@show map(parts(M,:V)) do j
-  Expr(M, 1,j)
-end
-
-@show map(parts(M,:V)) do i
-  Expr(M, i)
-end
-
-to_graphviz(M)
-
-X1 = Subobject(M, V=[1]) 
-X2 = Subobject(M, V=[2]) 
-X3 = Subobject(M, V=[3]) 
-
-
-
-
-@testset "Subobject Biheyting Algebra" begin
-  draw_subobject(Subobject(M, V=[1,2]))
-  @test nparts(dom(hom(Subobject(M, V=[1,2]))), :V) == 2
-  draw_subobject(X2)
-  negate(X3) |> draw_subobject
-  negate(X1) |> draw_subobject
-
-  meet(negate(X3), negate(X1)) |> draw_subobject
-  join(negate(X3), negate(X1)) |> draw_subobject
-
-  @test dom(hom(join(negate(X3), negate(X1)))) == M
-
-  # these should be equal by value but not by identity
-  @test meet(negate(X3), negate(X1)) != X2
-  # you have to force them first to convert to the same internal storage type
-  @test force((meet(negate(X3), negate(X1)))) == force(X2)
-
-  @test is_subobject(X3, negate(join(X1, X2)))
-
-  @test force(meet(X3, negate(X1))) == force(X3)
-  @test dom(hom(negate(meet(X1, X2)))) == M
 end
