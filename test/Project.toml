@@ -1,3 +1,4 @@
 [deps]
-AlgebraicMetabolism = "fdd843e2-20df-4918-9bc7-fd2071f1d7c3"
+# AlgebraicMetabolism = "fdd843e2-20df-4918-9bc7-fd2071f1d7c3"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+Catlab = "134e5e36-593f-5add-ad60-77f754baafbe"
