@@ -1,5 +1,5 @@
 [deps]
-AlgebraicMetabolism = "b66562e1-fa90-4e8b-9505-c909188fab77"
+AlgebraicMetabolism = "fdd843e2-20df-4918-9bc7-fd2071f1d7c3"
 Catlab = "134e5e36-593f-5add-ad60-77f754baafbe"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 Literate = "98b081ad-f1c9-55d3-8b20-4c87d4299306"

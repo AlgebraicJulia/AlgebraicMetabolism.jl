@@ -4,7 +4,7 @@ using Literate
 const literate_dir = joinpath(@__DIR__, "literate")
 const generated_dir = joinpath(@__DIR__, "src", "generated")
 
-@info "Loading AlgebraicTemplate"
+@info "Loading AlgebraicMetabolism"
 using AlgebraicMetabolism
 
 const no_literate = "--no-literate" in ARGS
@@ -52,6 +52,6 @@ makedocs(
 @info "Deploying docs"
 deploydocs(
   target="build",
-  repo="github.com/AlgebraicJulia/AlgebraicTemplate.jl.git",
+  repo="github.com/AlgebraicJulia/AlgebraicMetabolism.jl.git",
   branch="gh-pages"
 )
