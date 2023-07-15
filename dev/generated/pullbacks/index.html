@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Stratification · AlgebraicMetabolism.jl</title><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.24/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">AlgebraicMetabolism.jl</a></span></div><form class="docs-search" action="../../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../../">AlgebraicMetabolism.jl</a></li><li><span class="tocitem">Examples</span><ul><li><a class="tocitem" href="../literate_example/">AlgebraicMetabolism Package Demo</a></li><li class="is-active"><a class="tocitem" href>Stratification</a></li></ul></li><li><a class="tocitem" href="../../api/">Library Reference</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Examples</a></li><li class="is-active"><a href>Stratification</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Stratification</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/AlgebraicJulia/AlgebraicMetabolism.jl/blob/main/docs/literate/pullbacks.jl" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Stratification"><a class="docs-heading-anchor" href="#Stratification">Stratification</a><a id="Stratification-1"></a><a class="docs-heading-anchor-permalink" href="#Stratification" title="Permalink"></a></h1><p>First we want to load our package with <code>using</code>, we will also want some Catlab utilities.</p><pre><code class="language-julia hljs">using AlgebraicMetabolism
+using Catlab
+using Catlab.ACSets
+using Catlab.CategoricalAlgebra
+using Catlab.CategoricalAlgebra.CSets
+using Catlab.Graphics
+using Catlab.Graphics.Graphviz
+using Test
+
+@acset_type MetabolicNet(SchMetabolicNet, index=[]) &lt;: AbstractMetabolicNet
+
+
+M = @acset MetabolicNet begin
+  V = 2
+  E₁ = 3
+  E₂ = 3
+
+  src₁ = [1,2,1]
+  tgt₁ = [1,2,2]
+
+  src₂ = [1,2,1]
+  tgt₂ = [1,2,2]
+end</code></pre><div class="c-set">
+<span class="c-set-summary">Main.__atexample__named__pullbacks.MetabolicNet with elements V = 1:2, E₁ = 1:3, E₂ = 1:3</span>
+<table>
+  <thead>
+    <tr class = "header headerLastRow">
+      <th class = "rowNumber" style = "font-weight: bold; text-align: right;">E₁</th>
+      <th style = "text-align: right;">src₁</th>
+      <th style = "text-align: right;">tgt₁</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class = "rowNumber" style = "font-weight: bold; text-align: right;">1</td>
+      <td style = "text-align: right;">1</td>
+      <td style = "text-align: right;">1</td>
+    </tr>
+    <tr>
+      <td class = "rowNumber" style = "font-weight: bold; text-align: right;">2</td>
+      <td style = "text-align: right;">2</td>
+      <td style = "text-align: right;">2</td>
+    </tr>
+    <tr>
+      <td class = "rowNumber" style = "font-weight: bold; text-align: right;">3</td>
+      <td style = "text-align: right;">1</td>
+      <td style = "text-align: right;">2</td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr class = "header headerLastRow">
+      <th class = "rowNumber" style = "font-weight: bold; text-align: right;">E₂</th>
+      <th style = "text-align: right;">src₂</th>
+      <th style = "text-align: right;">tgt₂</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class = "rowNumber" style = "font-weight: bold; text-align: right;">1</td>
+      <td style = "text-align: right;">1</td>
+      <td style = "text-align: right;">1</td>
+    </tr>
+    <tr>
+      <td class = "rowNumber" style = "font-weight: bold; text-align: right;">2</td>
+      <td style = "text-align: right;">2</td>
+      <td style = "text-align: right;">2</td>
+    </tr>
+    <tr>
+      <td class = "rowNumber" style = "font-weight: bold; text-align: right;">3</td>
+      <td style = "text-align: right;">1</td>
+      <td style = "text-align: right;">2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>Now we can compute the product model to get a model with 2×2=4 states.</p><pre><code class="language-julia hljs">M² = product(M,M)
+P = ReactionMetabolicNet{Rational}()
+copy_parts!(P, apex(M²))
+to_graphviz(P)</code></pre><img src='data:image/svg+xml;utf-8,<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="724pt" height="591pt"
+ viewBox="0.00 0.00 724.25 590.92" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 586.92)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-586.92 720.25,-586.92 720.25,4 -4,4"/>
+<!-- n1 -->
+<g id="node1" class="node">
+<title>n1</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="89.04" cy="-165.88" rx="89.08" ry="89.08"/>
+<text text-anchor="middle" x="89.04" y="-162.18" font-family="Times,serif" font-size="14.00">nothing[nothing]</text>
+</g>
+<!-- n1&%2345;&gt;n1 -->
+<g id="edge1" class="edge">
+<title>n1&%2345;&gt;n1</title>
+<path fill="none" stroke="black" d="M78.1,-254.47C80.03,-265.6 83.68,-272.92 89.04,-272.92 92.56,-272.92 95.34,-269.77 97.38,-264.45"/>
+<polygon fill="black" stroke="black" points="100.85,-265.03 99.98,-254.47 94.08,-263.27 100.85,-265.03"/>
+<text text-anchor="middle" x="89.04" y="-276.72" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n1&%2345;&gt;n1 -->
+<g id="edge10" class="edge">
+<title>n1&%2345;&gt;n1</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M64.16,-251.5C65.63,-273.95 73.93,-290.92 89.04,-290.92 101.79,-290.92 109.69,-278.84 112.74,-261.58"/>
+<polygon fill="black" stroke="black" points="116.23,-261.84 113.93,-251.5 109.28,-261.02 116.23,-261.84"/>
+<text text-anchor="middle" x="89.04" y="-294.72" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n2 -->
+<g id="node2" class="node">
+<title>n2</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="358.13" cy="-427.88" rx="89.08" ry="89.08"/>
+<text text-anchor="middle" x="358.13" y="-424.18" font-family="Times,serif" font-size="14.00">nothing[nothing]</text>
+</g>
+<!-- n1&%2345;&gt;n2 -->
+<g id="edge3" class="edge">
+<title>n1&%2345;&gt;n2</title>
+<path fill="none" stroke="black" d="M136.01,-241.6C153.16,-266.72 173.9,-293.86 196.08,-315.88 218.88,-338.5 246.73,-359.65 272.82,-377.34"/>
+<polygon fill="black" stroke="black" points="270.96,-380.31 281.22,-382.97 274.86,-374.5 270.96,-380.31"/>
+<text text-anchor="middle" x="223.58" y="-364.68" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n1&%2345;&gt;n2 -->
+<g id="edge12" class="edge">
+<title>n1&%2345;&gt;n2</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M163.11,-215.67C192.74,-238.18 225.85,-266.53 251.08,-296.88 261.77,-309.72 259.44,-316.24 269.08,-329.88 275.3,-338.67 282.21,-347.54 289.35,-356.17"/>
+<polygon fill="black" stroke="black" points="286.83,-358.62 295.95,-364.01 292.19,-354.11 286.83,-358.62"/>
+<text text-anchor="middle" x="223.58" y="-300.68" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n3 -->
+<g id="node3" class="node">
+<title>n3</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="358.13" cy="-165.88" rx="89.08" ry="89.08"/>
+<text text-anchor="middle" x="358.13" y="-162.18" font-family="Times,serif" font-size="14.00">nothing[nothing]</text>
+</g>
+<!-- n1&%2345;&gt;n3 -->
+<g id="edge7" class="edge">
+<title>n1&%2345;&gt;n3</title>
+<path fill="none" stroke="black" d="M178.24,-165.88C204.1,-165.88 232.55,-165.88 259,-165.88"/>
+<polygon fill="black" stroke="black" points="259.03,-169.38 269.03,-165.88 259.03,-162.38 259.03,-169.38"/>
+<text text-anchor="middle" x="223.58" y="-169.68" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n1&%2345;&gt;n3 -->
+<g id="edge16" class="edge">
+<title>n1&%2345;&gt;n3</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M176.68,-149.06C183.23,-148.19 189.75,-147.44 196.08,-146.88 220.43,-144.71 226.74,-144.71 251.08,-146.88 254.15,-147.15 257.26,-147.47 260.4,-147.82"/>
+<polygon fill="black" stroke="black" points="260.14,-151.31 270.49,-149.06 260.99,-144.37 260.14,-151.31"/>
+<text text-anchor="middle" x="223.58" y="-150.68" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n4 -->
+<g id="node4" class="node">
+<title>n4</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="627.21" cy="-165.88" rx="89.08" ry="89.08"/>
+<text text-anchor="middle" x="627.21" y="-162.18" font-family="Times,serif" font-size="14.00">nothing[nothing]</text>
+</g>
+<!-- n1&%2345;&gt;n4 -->
+<g id="edge9" class="edge">
+<title>n1&%2345;&gt;n4</title>
+<path fill="none" stroke="black" d="M158.72,-109.69C190.32,-87.37 229.54,-64.31 269.08,-52.88 345.12,-30.89 371.14,-30.89 447.17,-52.88 483.32,-63.33 519.19,-83.49 549.22,-103.93"/>
+<polygon fill="black" stroke="black" points="547.32,-106.87 557.53,-109.69 551.31,-101.12 547.32,-106.87"/>
+<text text-anchor="middle" x="358.13" y="-56.68" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n1&%2345;&gt;n4 -->
+<g id="edge18" class="edge">
+<title>n1&%2345;&gt;n4</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M145.74,-96.88C177.62,-64.02 220.84,-29.41 269.08,-17.88 378.79,8.34 429.6,12.37 520.17,-54.88 534.52,-65.53 548.63,-78.23 561.65,-91.16"/>
+<polygon fill="black" stroke="black" points="559.24,-93.7 568.76,-98.36 564.22,-88.78 559.24,-93.7"/>
+<text text-anchor="middle" x="358.13" y="-21.68" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n2&%2345;&gt;n2 -->
+<g id="edge2" class="edge">
+<title>n2&%2345;&gt;n2</title>
+<path fill="none" stroke="black" d="M347.19,-516.47C349.11,-527.6 352.76,-534.92 358.13,-534.92 361.65,-534.92 364.43,-531.77 366.47,-526.45"/>
+<polygon fill="black" stroke="black" points="369.94,-527.03 369.07,-516.47 363.16,-525.27 369.94,-527.03"/>
+<text text-anchor="middle" x="358.13" y="-538.72" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n2&%2345;&gt;n2 -->
+<g id="edge11" class="edge">
+<title>n2&%2345;&gt;n2</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M333.24,-513.5C334.72,-535.95 343.01,-552.92 358.13,-552.92 370.88,-552.92 378.78,-540.84 381.82,-523.58"/>
+<polygon fill="black" stroke="black" points="385.31,-523.84 383.01,-513.5 378.36,-523.02 385.31,-523.84"/>
+<text text-anchor="middle" x="358.13" y="-556.72" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n2&%2345;&gt;n4 -->
+<g id="edge8" class="edge">
+<title>n2&%2345;&gt;n4</title>
+<path fill="none" stroke="black" d="M435.03,-382.97C463.44,-364.21 494.91,-340.94 520.17,-315.88 539.93,-296.27 558.54,-272.6 574.49,-249.91"/>
+<polygon fill="black" stroke="black" points="577.42,-251.82 580.24,-241.6 571.67,-247.83 577.42,-251.82"/>
+<text text-anchor="middle" x="492.67" y="-364.68" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n2&%2345;&gt;n4 -->
+<g id="edge17" class="edge">
+<title>n2&%2345;&gt;n4</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M420.3,-364.01C429.74,-352.98 439.05,-341.36 447.17,-329.88 456.82,-316.24 454.49,-309.72 465.17,-296.88 488.13,-269.26 517.62,-243.29 545.08,-221.87"/>
+<polygon fill="black" stroke="black" points="547.35,-224.54 553.14,-215.67 543.08,-218.99 547.35,-224.54"/>
+<text text-anchor="middle" x="492.67" y="-300.68" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n3&%2345;&gt;n3 -->
+<g id="edge4" class="edge">
+<title>n3&%2345;&gt;n3</title>
+<path fill="none" stroke="black" d="M347.19,-254.47C349.11,-265.6 352.76,-272.92 358.13,-272.92 361.65,-272.92 364.43,-269.77 366.47,-264.45"/>
+<polygon fill="black" stroke="black" points="369.94,-265.03 369.07,-254.47 363.16,-263.27 369.94,-265.03"/>
+<text text-anchor="middle" x="358.13" y="-276.72" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n3&%2345;&gt;n3 -->
+<g id="edge13" class="edge">
+<title>n3&%2345;&gt;n3</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M333.24,-251.5C334.72,-273.95 343.01,-290.92 358.13,-290.92 370.88,-290.92 378.78,-278.84 381.82,-261.58"/>
+<polygon fill="black" stroke="black" points="385.31,-261.84 383.01,-251.5 378.36,-261.02 385.31,-261.84"/>
+<text text-anchor="middle" x="358.13" y="-294.72" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n3&%2345;&gt;n4 -->
+<g id="edge6" class="edge">
+<title>n3&%2345;&gt;n4</title>
+<path fill="none" stroke="black" d="M447.32,-165.88C473.19,-165.88 501.63,-165.88 528.08,-165.88"/>
+<polygon fill="black" stroke="black" points="528.11,-169.38 538.11,-165.88 528.11,-162.38 528.11,-169.38"/>
+<text text-anchor="middle" x="492.67" y="-169.68" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n3&%2345;&gt;n4 -->
+<g id="edge15" class="edge">
+<title>n3&%2345;&gt;n4</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M445.76,-149.06C452.31,-148.19 458.83,-147.44 465.17,-146.88 489.52,-144.71 495.82,-144.71 520.17,-146.88 523.24,-147.15 526.35,-147.47 529.49,-147.82"/>
+<polygon fill="black" stroke="black" points="529.22,-151.31 539.57,-149.06 530.08,-144.37 529.22,-151.31"/>
+<text text-anchor="middle" x="492.67" y="-150.68" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n4&%2345;&gt;n4 -->
+<g id="edge5" class="edge">
+<title>n4&%2345;&gt;n4</title>
+<path fill="none" stroke="black" d="M616.27,-254.47C618.2,-265.6 621.85,-272.92 627.21,-272.92 630.73,-272.92 633.51,-269.77 635.55,-264.45"/>
+<polygon fill="black" stroke="black" points="639.02,-265.03 638.15,-254.47 632.24,-263.27 639.02,-265.03"/>
+<text text-anchor="middle" x="627.21" y="-276.72" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+<!-- n4&%2345;&gt;n4 -->
+<g id="edge14" class="edge">
+<title>n4&%2345;&gt;n4</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M602.33,-251.5C603.8,-273.95 612.1,-290.92 627.21,-290.92 639.96,-290.92 647.86,-278.84 650.9,-261.58"/>
+<polygon fill="black" stroke="black" points="654.4,-261.84 652.1,-251.5 647.45,-261.02 654.4,-261.84"/>
+<text text-anchor="middle" x="627.21" y="-294.72" font-family="Times,serif" font-size="14.00">nothing</text>
+</g>
+</g>
+</svg>
+'/><p>We need to propagate the attributes from the factor models to the product model. We start with the attributes for the original two models.</p><pre><code class="language-julia hljs">vnames₁ = [:x1, :x2]
+γ₁ = [1//2, 1//3]
+μ₁ = [2,3,5]
+f₁ = [1,2,3]
+
+vnames₂ = [:a, :b]
+γ₂ = [7//2, 7//3]
+μ₂ = 11*[2,3,5]
+f₂ = [1,2,3]/2</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">3-element Vector{Float64}:
+ 0.5
+ 1.0
+ 1.5</code></pre><p>The names get composed by tupling.</p><pre><code class="language-julia hljs">π₁, π₂ = legs(M²)
+for v in parts(P, :V)
+  P[v, :vname] = Symbol(&quot;($(vnames₁[π₁[:V](v)]),$(vnames₂[π₂[:V](v)]))&quot;)
+  P[v, :γ] = γ₁[π₁[:V](v)]*γ₂[π₂[:V](v)]
+end</code></pre><p>The coefficients multiply</p><pre><code class="language-julia hljs">for e in parts(P, :E₁)
+  P[e, :μ] = μ₁[π₁[:E₁](e)]*μ₂[π₂[:E₁](e)]
+end</code></pre><p>The exponents add</p><pre><code class="language-julia hljs">for e in parts(P, :E₂)
+  P[e, :f] = f₁[π₁[:E₂](e)]+f₂[π₂[:E₂](e)]
+end</code></pre><p>And the resulting model can be drawn. Notice the symmetry in both the structure, and the numbers.</p><pre><code class="language-julia hljs">to_graphviz(P)</code></pre><img src='data:image/svg+xml;utf-8,<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="542pt" height="471pt"
+ viewBox="0.00 0.00 542.47 470.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 466.51)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-466.51 538.47,-466.51 538.47,4 -4,4"/>
+<!-- n1 -->
+<g id="node1" class="node">
+<title>n1</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="61.74" cy="-127.76" rx="61.99" ry="61.99"/>
+<text text-anchor="middle" x="61.74" y="-124.06" font-family="Times,serif" font-size="14.00">(x1,a)[7//4]</text>
+</g>
+<!-- n1&%2345;&gt;n1 -->
+<g id="edge1" class="edge">
+<title>n1&%2345;&gt;n1</title>
+<path fill="none" stroke="black" d="M52.74,-188.95C53.91,-199.88 56.91,-207.51 61.74,-207.51 64.91,-207.51 67.3,-204.22 68.89,-198.87"/>
+<polygon fill="black" stroke="black" points="72.35,-199.42 70.75,-188.95 65.47,-198.13 72.35,-199.42"/>
+<text text-anchor="middle" x="61.74" y="-211.31" font-family="Times,serif" font-size="14.00">44//1</text>
+</g>
+<!-- n1&%2345;&gt;n1 -->
+<g id="edge10" class="edge">
+<title>n1&%2345;&gt;n1</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M42.64,-186.93C42.23,-208.18 48.6,-225.51 61.74,-225.51 72.74,-225.51 78.99,-213.4 80.51,-197.02"/>
+<polygon fill="black" stroke="black" points="84.01,-197.05 80.85,-186.93 77.01,-196.81 84.01,-197.05"/>
+<text text-anchor="middle" x="61.74" y="-229.31" font-family="Times,serif" font-size="14.00">3//2</text>
+</g>
+<!-- n2 -->
+<g id="node2" class="node">
+<title>n2</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="267.23" cy="-334.76" rx="61.99" ry="61.99"/>
+<text text-anchor="middle" x="267.23" y="-331.06" font-family="Times,serif" font-size="14.00">(x2,a)[7//6]</text>
+</g>
+<!-- n1&%2345;&gt;n2 -->
+<g id="edge3" class="edge">
+<title>n1&%2345;&gt;n2</title>
+<path fill="none" stroke="black" d="M91.47,-182.18C104.87,-204.6 122.13,-229.91 141.49,-249.76 159.82,-268.56 182.91,-285.66 204.23,-299.52"/>
+<polygon fill="black" stroke="black" points="202.61,-302.64 212.92,-305.06 206.37,-296.73 202.61,-302.64"/>
+<text text-anchor="middle" x="164.49" y="-290.56" font-family="Times,serif" font-size="14.00">110//1</text>
+</g>
+<!-- n1&%2345;&gt;n2 -->
+<g id="edge12" class="edge">
+<title>n1&%2345;&gt;n2</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M113.24,-162.19C137.7,-180.57 166.29,-204.75 187.49,-230.76 198.29,-244.02 195.82,-250.66 205.49,-264.76 209.34,-270.38 213.58,-276.06 217.97,-281.61"/>
+<polygon fill="black" stroke="black" points="215.47,-284.09 224.49,-289.65 220.91,-279.68 215.47,-284.09"/>
+<text text-anchor="middle" x="164.49" y="-234.56" font-family="Times,serif" font-size="14.00">7//2</text>
+</g>
+<!-- n3 -->
+<g id="node3" class="node">
+<title>n3</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="267.23" cy="-127.76" rx="61.99" ry="61.99"/>
+<text text-anchor="middle" x="267.23" y="-124.06" font-family="Times,serif" font-size="14.00">(x1,b)[7//6]</text>
+</g>
+<!-- n1&%2345;&gt;n3 -->
+<g id="edge7" class="edge">
+<title>n1&%2345;&gt;n3</title>
+<path fill="none" stroke="black" d="M123.52,-127.76C146.07,-127.76 171.83,-127.76 195.21,-127.76"/>
+<polygon fill="black" stroke="black" points="195.42,-131.26 205.42,-127.76 195.42,-124.26 195.42,-131.26"/>
+<text text-anchor="middle" x="164.49" y="-131.56" font-family="Times,serif" font-size="14.00">110//1</text>
+</g>
+<!-- n1&%2345;&gt;n3 -->
+<g id="edge16" class="edge">
+<title>n1&%2345;&gt;n3</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M121.81,-111.93C128.41,-110.63 135.07,-109.53 141.49,-108.76 161.79,-106.35 167.19,-106.35 187.49,-108.76 190.7,-109.15 193.97,-109.61 197.26,-110.15"/>
+<polygon fill="black" stroke="black" points="196.71,-113.6 207.17,-111.93 197.95,-106.71 196.71,-113.6"/>
+<text text-anchor="middle" x="164.49" y="-112.56" font-family="Times,serif" font-size="14.00">5//2</text>
+</g>
+<!-- n4 -->
+<g id="node4" class="node">
+<title>n4</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="472.72" cy="-127.76" rx="61.99" ry="61.99"/>
+<text text-anchor="middle" x="472.72" y="-124.06" font-family="Times,serif" font-size="14.00">(x2,b)[7//9]</text>
+</g>
+<!-- n1&%2345;&gt;n4 -->
+<g id="edge9" class="edge">
+<title>n1&%2345;&gt;n4</title>
+<path fill="none" stroke="black" d="M110.86,-89.74C137.19,-71.35 171.34,-51.25 205.49,-41.76 258.37,-27.06 276.1,-27.06 328.98,-41.76 359.66,-50.29 390.34,-67.38 415.35,-84.1"/>
+<polygon fill="black" stroke="black" points="413.38,-86.99 423.61,-89.74 417.33,-81.21 413.38,-86.99"/>
+<text text-anchor="middle" x="267.23" y="-45.56" font-family="Times,serif" font-size="14.00">275//1</text>
+</g>
+<!-- n1&%2345;&gt;n4 -->
+<g id="edge18" class="edge">
+<title>n1&%2345;&gt;n4</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M102.32,-80.57C114.15,-68.05 127.67,-55.14 141.49,-44.76 209.16,6.03 246.75,8.19 328.98,-11.76 366.54,-20.88 400.5,-47.31 425.86,-72.64"/>
+<polygon fill="black" stroke="black" points="423.63,-75.37 433.11,-80.1 428.65,-70.49 423.63,-75.37"/>
+<text text-anchor="middle" x="267.23" y="-15.56" font-family="Times,serif" font-size="14.00">9//2</text>
+</g>
+<!-- n2&%2345;&gt;n2 -->
+<g id="edge2" class="edge">
+<title>n2&%2345;&gt;n2</title>
+<path fill="none" stroke="black" d="M258.23,-395.95C259.4,-406.88 262.4,-414.51 267.23,-414.51 270.4,-414.51 272.79,-411.22 274.38,-405.87"/>
+<polygon fill="black" stroke="black" points="277.84,-406.42 276.24,-395.95 270.96,-405.13 277.84,-406.42"/>
+<text text-anchor="middle" x="267.23" y="-418.31" font-family="Times,serif" font-size="14.00">66//1</text>
+</g>
+<!-- n2&%2345;&gt;n2 -->
+<g id="edge11" class="edge">
+<title>n2&%2345;&gt;n2</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M248.13,-393.93C247.72,-415.18 254.09,-432.51 267.23,-432.51 278.22,-432.51 284.48,-420.4 285.99,-404.02"/>
+<polygon fill="black" stroke="black" points="289.5,-404.05 286.34,-393.93 282.5,-403.81 289.5,-404.05"/>
+<text text-anchor="middle" x="267.23" y="-436.31" font-family="Times,serif" font-size="14.00">5//2</text>
+</g>
+<!-- n2&%2345;&gt;n4 -->
+<g id="edge8" class="edge">
+<title>n2&%2345;&gt;n4</title>
+<path fill="none" stroke="black" d="M321.54,-305.06C345.1,-290.35 372.12,-271.15 392.98,-249.76 409.84,-232.47 425.12,-211.03 437.63,-190.97"/>
+<polygon fill="black" stroke="black" points="440.77,-192.53 442.99,-182.18 434.8,-188.89 440.77,-192.53"/>
+<text text-anchor="middle" x="369.98" y="-290.56" font-family="Times,serif" font-size="14.00">165//1</text>
+</g>
+<!-- n2&%2345;&gt;n4 -->
+<g id="edge17" class="edge">
+<title>n2&%2345;&gt;n4</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M309.98,-289.65C316.66,-281.61 323.25,-273.13 328.98,-264.76 338.64,-250.66 336.18,-244.02 346.98,-230.76 365.86,-207.59 390.6,-185.88 413.07,-168.43"/>
+<polygon fill="black" stroke="black" points="415.41,-171.05 421.23,-162.19 411.16,-165.48 415.41,-171.05"/>
+<text text-anchor="middle" x="369.98" y="-234.56" font-family="Times,serif" font-size="14.00">7//2</text>
+</g>
+<!-- n3&%2345;&gt;n3 -->
+<g id="edge4" class="edge">
+<title>n3&%2345;&gt;n3</title>
+<path fill="none" stroke="black" d="M258.23,-188.95C259.4,-199.88 262.4,-207.51 267.23,-207.51 270.4,-207.51 272.79,-204.22 274.38,-198.87"/>
+<polygon fill="black" stroke="black" points="277.84,-199.42 276.24,-188.95 270.96,-198.13 277.84,-199.42"/>
+<text text-anchor="middle" x="267.23" y="-211.31" font-family="Times,serif" font-size="14.00">66//1</text>
+</g>
+<!-- n3&%2345;&gt;n3 -->
+<g id="edge13" class="edge">
+<title>n3&%2345;&gt;n3</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M248.13,-186.93C247.72,-208.18 254.09,-225.51 267.23,-225.51 278.22,-225.51 284.48,-213.4 285.99,-197.02"/>
+<polygon fill="black" stroke="black" points="289.5,-197.05 286.34,-186.93 282.5,-196.81 289.5,-197.05"/>
+<text text-anchor="middle" x="267.23" y="-229.31" font-family="Times,serif" font-size="14.00">2//1</text>
+</g>
+<!-- n3&%2345;&gt;n4 -->
+<g id="edge6" class="edge">
+<title>n3&%2345;&gt;n4</title>
+<path fill="none" stroke="black" d="M329.01,-127.76C351.56,-127.76 377.32,-127.76 400.7,-127.76"/>
+<polygon fill="black" stroke="black" points="400.91,-131.26 410.91,-127.76 400.91,-124.26 400.91,-131.26"/>
+<text text-anchor="middle" x="369.98" y="-131.56" font-family="Times,serif" font-size="14.00">165//1</text>
+</g>
+<!-- n3&%2345;&gt;n4 -->
+<g id="edge15" class="edge">
+<title>n3&%2345;&gt;n4</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M327.3,-111.93C333.9,-110.63 340.55,-109.53 346.98,-108.76 367.28,-106.35 372.68,-106.35 392.98,-108.76 396.19,-109.15 399.46,-109.61 402.75,-110.15"/>
+<polygon fill="black" stroke="black" points="402.2,-113.6 412.66,-111.93 403.44,-106.71 402.2,-113.6"/>
+<text text-anchor="middle" x="369.98" y="-112.56" font-family="Times,serif" font-size="14.00">4//1</text>
+</g>
+<!-- n4&%2345;&gt;n4 -->
+<g id="edge5" class="edge">
+<title>n4&%2345;&gt;n4</title>
+<path fill="none" stroke="black" d="M463.72,-188.95C464.89,-199.88 467.89,-207.51 472.72,-207.51 475.89,-207.51 478.28,-204.22 479.87,-198.87"/>
+<polygon fill="black" stroke="black" points="483.33,-199.42 481.72,-188.95 476.45,-198.13 483.33,-199.42"/>
+<text text-anchor="middle" x="472.72" y="-211.31" font-family="Times,serif" font-size="14.00">99//1</text>
+</g>
+<!-- n4&%2345;&gt;n4 -->
+<g id="edge14" class="edge">
+<title>n4&%2345;&gt;n4</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M453.62,-186.93C453.21,-208.18 459.57,-225.51 472.72,-225.51 483.71,-225.51 489.97,-213.4 491.48,-197.02"/>
+<polygon fill="black" stroke="black" points="494.98,-197.05 491.83,-186.93 487.99,-196.81 494.98,-197.05"/>
+<text text-anchor="middle" x="472.72" y="-229.31" font-family="Times,serif" font-size="14.00">3//1</text>
+</g>
+</g>
+</svg>
+'/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../literate_example/">« AlgebraicMetabolism Package Demo</a><a class="docs-footer-nextpage" href="../../api/">Library Reference »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Saturday 15 July 2023 17:34">Saturday 15 July 2023</span>. Using Julia version 1.9.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

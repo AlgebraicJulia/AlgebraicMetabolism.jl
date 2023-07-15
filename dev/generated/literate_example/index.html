@@ -1,2 +1,541 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Code Example · AlgebraicTemplate.jl</title><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.24/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">AlgebraicTemplate.jl</a></span></div><form class="docs-search" action="../../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../../">AlgebraicTemplate.jl</a></li><li><span class="tocitem">Examples</span><ul><li class="is-active"><a class="tocitem" href>Code Example</a><ul class="internal"><li><a class="tocitem" href="#Using-hello()"><span>Using <code>hello()</code></span></a></li></ul></li></ul></li><li><a class="tocitem" href="../../api/">Library Reference</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Examples</a></li><li class="is-active"><a href>Code Example</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Code Example</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/AlgebraicJulia/AlgebraicTemplate.jl/blob/main/docs/literate/literate_example.jl" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Code-Example"><a class="docs-heading-anchor" href="#Code-Example">Code Example</a><a id="Code-Example-1"></a><a class="docs-heading-anchor-permalink" href="#Code-Example" title="Permalink"></a></h1><p>This is an example of adding a code example compiled with Literate.jl in the docs.</p><p>First we want to load our package with <code>using</code></p><pre><code class="language-julia hljs">using AlgebraicTemplate</code></pre><h2 id="Using-hello()"><a class="docs-heading-anchor" href="#Using-hello()">Using <code>hello()</code></a><a id="Using-hello()-1"></a><a class="docs-heading-anchor-permalink" href="#Using-hello()" title="Permalink"></a></h2><p>We provide the <code>hello(string)</code> method which prints &quot;Hello, <code>string</code>!&quot;</p><pre><code class="language-julia hljs">hello(&quot;World&quot;)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">&quot;Hello, World!&quot;</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../">« AlgebraicTemplate.jl</a><a class="docs-footer-nextpage" href="../../api/">Library Reference »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.24 on <span class="colophon-date" title="Thursday 25 May 2023 13:20">Thursday 25 May 2023</span>. Using Julia version 1.9.0.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>AlgebraicMetabolism Package Demo · AlgebraicMetabolism.jl</title><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.24/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">AlgebraicMetabolism.jl</a></span></div><form class="docs-search" action="../../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../../">AlgebraicMetabolism.jl</a></li><li><span class="tocitem">Examples</span><ul><li class="is-active"><a class="tocitem" href>AlgebraicMetabolism Package Demo</a></li><li><a class="tocitem" href="../pullbacks/">Stratification</a></li></ul></li><li><a class="tocitem" href="../../api/">Library Reference</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Examples</a></li><li class="is-active"><a href>AlgebraicMetabolism Package Demo</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>AlgebraicMetabolism Package Demo</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/AlgebraicJulia/AlgebraicMetabolism.jl/blob/main/docs/literate/literate_example.jl" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="AlgebraicMetabolism-Package-Demo"><a class="docs-heading-anchor" href="#AlgebraicMetabolism-Package-Demo">AlgebraicMetabolism Package Demo</a><a id="AlgebraicMetabolism-Package-Demo-1"></a><a class="docs-heading-anchor-permalink" href="#AlgebraicMetabolism-Package-Demo" title="Permalink"></a></h1><p>First we want to load our package with <code>using</code>, we will also want some Catlab utilities.</p><pre><code class="language-julia hljs">using AlgebraicMetabolism
+using Catlab
+using Catlab.ACSets
+using Catlab.CategoricalAlgebra
+using Catlab.CategoricalAlgebra.CSets
+using Catlab.Graphics
+using Catlab.Graphics.Graphviz
+using Test</code></pre><p>The first step is to understand the data model of what metabolic network is</p><p>There are sets:</p><ol><li>V the vertices, which represent variables in the system</li><li>E₁ the edges that represent coefficients</li><li>E₂ the edges that represent exponents</li><li>Names for using human readable variable names</li><li>Numbers for storing coefficients and exponents</li></ol><p>Then there are relationships:</p><ol><li>src₁,tgt₁ for encoding a graph of coefficients</li><li>src₂,tgt₂ for encoding a graph of exponents</li><li>μ,f tell you the numeric value associated with that edge</li><li>γ an intrinsic parameter for the strength of effects per vertex</li><li>vname gives you the vertex names</li></ol><p>We did not name the edges, because they don&#39;t really have conceptual identities other than &quot;the interaction between x,y&quot; where x is the src and y is the target variables.</p><pre><code class="language-julia hljs">to_graphviz(SchReactionMetabolicNet)</code></pre><img src='data:image/svg+xml;utf-8,<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="204pt" height="174pt"
+ viewBox="0.00 0.00 203.93 174.31" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 170.31)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-170.31 199.93,-170.31 199.93,4 -4,4"/>
+<!-- n1 -->
+<g id="node1" class="node">
+<title>n1</title>
+<ellipse fill="none" stroke="black" cx="92.88" cy="-90.73" rx="27" ry="18"/>
+<text text-anchor="middle" x="92.88" y="-87.03" font-family="Times,serif" font-size="14.00">V</text>
+</g>
+<!-- n4 -->
+<g id="node4" class="node">
+<title>n4</title>
+<ellipse fill="black" stroke="black" cx="44.8" cy="-149.51" rx="1.8" ry="1.8"/>
+<text text-anchor="middle" x="21.5" y="-155.11" font-family="Times,serif" font-size="14.00">Name</text>
+</g>
+<!-- n1&%2345;&gt;n4 -->
+<g id="edge5" class="edge">
+<title>n1&%2345;&gt;n4</title>
+<path fill="none" stroke="black" d="M79.74,-106.79C70.95,-117.54 59.69,-131.31 52.36,-140.27"/>
+<polygon fill="black" stroke="black" points="49.57,-138.15 45.95,-148.1 54.99,-142.58 49.57,-138.15"/>
+<text text-anchor="middle" x="42.05" y="-127.33" font-family="Times,serif" font-size="14.00">vname</text>
+</g>
+<!-- n5 -->
+<g id="node5" class="node">
+<title>n5</title>
+<ellipse fill="black" stroke="black" cx="138.24" cy="-36.22" rx="1.8" ry="1.8"/>
+<text text-anchor="middle" x="165.94" y="-23.22" font-family="Times,serif" font-size="14.00">Number</text>
+</g>
+<!-- n1&%2345;&gt;n5 -->
+<g id="edge6" class="edge">
+<title>n1&%2345;&gt;n5</title>
+<path fill="none" stroke="black" d="M106,-74.96C113.95,-65.41 123.81,-53.56 130.52,-45.5"/>
+<polygon fill="black" stroke="black" points="133.24,-47.7 136.95,-37.77 127.86,-43.22 133.24,-47.7"/>
+<text text-anchor="middle" x="113.76" y="-49.03" font-family="Times,serif" font-size="14.00">γ</text>
+</g>
+<!-- n2 -->
+<g id="node2" class="node">
+<title>n2</title>
+<ellipse fill="none" stroke="black" cx="168.93" cy="-101.84" rx="27" ry="18"/>
+<text text-anchor="middle" x="168.93" y="-98.14" font-family="Times,serif" font-size="14.00">E₁</text>
+</g>
+<!-- n2&%2345;&gt;n1 -->
+<g id="edge1" class="edge">
+<title>n2&%2345;&gt;n1</title>
+<path fill="none" stroke="black" d="M145.78,-92.06C140.79,-91.01 135.39,-90.08 130.02,-89.34"/>
+<polygon fill="black" stroke="black" points="130.16,-85.83 119.82,-88.15 129.35,-92.79 130.16,-85.83"/>
+<text text-anchor="middle" x="137.9" y="-79.5" font-family="Times,serif" font-size="14.00">src₁</text>
+</g>
+<!-- n2&%2345;&gt;n1 -->
+<g id="edge2" class="edge">
+<title>n2&%2345;&gt;n1</title>
+<path fill="none" stroke="black" d="M141.82,-104.4C136.65,-103.91 131.19,-103.2 125.86,-102.33"/>
+<polygon fill="black" stroke="black" points="126.36,-98.87 115.89,-100.48 125.08,-105.75 126.36,-98.87"/>
+<text text-anchor="middle" x="120.34" y="-107.16" font-family="Times,serif" font-size="14.00">tgt₁</text>
+</g>
+<!-- n2&%2345;&gt;n5 -->
+<g id="edge7" class="edge">
+<title>n2&%2345;&gt;n5</title>
+<path fill="none" stroke="black" d="M160.87,-84.6C155.35,-72.81 148.2,-57.53 143.43,-47.33"/>
+<polygon fill="black" stroke="black" points="146.57,-45.77 139.16,-38.2 140.23,-48.74 146.57,-45.77"/>
+<text text-anchor="middle" x="147.15" y="-54.76" font-family="Times,serif" font-size="14.00">μ</text>
+</g>
+<!-- n3 -->
+<g id="node3" class="node">
+<title>n3</title>
+<ellipse fill="none" stroke="black" cx="68.11" cy="-18" rx="27" ry="18"/>
+<text text-anchor="middle" x="68.11" y="-14.3" font-family="Times,serif" font-size="14.00">E₂</text>
+</g>
+<!-- n3&%2345;&gt;n1 -->
+<g id="edge3" class="edge">
+<title>n3&%2345;&gt;n1</title>
+<path fill="none" stroke="black" d="M68.28,-36.36C70.26,-45.06 73.55,-55.58 77.18,-65.05"/>
+<polygon fill="black" stroke="black" points="74,-66.51 81.05,-74.42 80.47,-63.84 74,-66.51"/>
+<text text-anchor="middle" x="58.73" y="-54.51" font-family="Times,serif" font-size="14.00">src₂</text>
+</g>
+<!-- n3&%2345;&gt;n1 -->
+<g id="edge4" class="edge">
+<title>n3&%2345;&gt;n1</title>
+<path fill="none" stroke="black" d="M80,-34.43C83.71,-42.76 87.42,-53.08 90.17,-62.62"/>
+<polygon fill="black" stroke="black" points="86.84,-63.72 92.75,-72.51 93.62,-61.96 86.84,-63.72"/>
+<text text-anchor="middle" x="98.59" y="-52.32" font-family="Times,serif" font-size="14.00">tgt₂</text>
+</g>
+<!-- n3&%2345;&gt;n5 -->
+<g id="edge8" class="edge">
+<title>n3&%2345;&gt;n5</title>
+<path fill="none" stroke="black" d="M93.43,-24.58C104.61,-27.48 117.22,-30.76 126.21,-33.1"/>
+<polygon fill="black" stroke="black" points="125.64,-36.57 136.2,-35.69 127.4,-29.79 125.64,-36.57"/>
+<text text-anchor="middle" x="106.82" y="-32.64" font-family="Times,serif" font-size="14.00">f</text>
+</g>
+</g>
+</svg>
+'/><p>The schema definition is given in the following domain specific language (DSL) invented by Catlab.</p><pre><code class="language-julia hljs">@present SchMetabolicNet(FreeSchema) begin
+  (V, E₁, E₂)::Ob
+  src₁::Hom(E₁, V)
+  tgt₁::Hom(E₁, V)
+
+  src₂::Hom(E₂, V)
+  tgt₂::Hom(E₂, V)
+end
+
+@present SchReactionMetabolicNet &lt;: SchMetabolicNet begin
+  Name::AttrType
+
+  vname::Attr(V, Name)
+
+  Number::AttrType
+  γ::Attr(V, Number)
+  μ::Attr(E₁, Number)
+  f::Attr(E₂, Number)
+
+end</code></pre><p>Once we define the schema, Catlab will generate a domain specific language for specifying models. This language isn&#39;t the easiest to write, but it is completely generated from the specification of the schema, and works for any type of model that you can build.</p><pre><code class="language-julia hljs">#Let&#39;s make our first model
+
+M = @acset ReactionMetabolicNet{Rational} begin
+  V = 3
+  E₁ = 2
+  E₂ = 3
+  vname = [:x₁, :x₂, :x₃]
+  γ = [1//2, 1//3, 2]
+
+  src₁ = [1,2]
+  tgt₁ = [2,3]
+  μ = [7,11]
+
+  src₂ = [1,2,3]
+  tgt₂ = [2,3,3]
+  f = [1,2,3]
+end</code></pre><div class="c-set">
+<span class="c-set-summary">ReactionMetabolicNet{Rational} with elements V = 1:3, E₁ = 1:2, E₂ = 1:3, Name = 1:0, Number = 1:0</span>
+<table>
+  <thead>
+    <tr class = "header headerLastRow">
+      <th class = "rowNumber" style = "font-weight: bold; text-align: right;">V</th>
+      <th style = "text-align: right;">vname</th>
+      <th style = "text-align: right;">γ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class = "rowNumber" style = "font-weight: bold; text-align: right;">1</td>
+      <td style = "text-align: right;">x₁</td>
+      <td style = "text-align: right;">1//2</td>
+    </tr>
+    <tr>
+      <td class = "rowNumber" style = "font-weight: bold; text-align: right;">2</td>
+      <td style = "text-align: right;">x₂</td>
+      <td style = "text-align: right;">1//3</td>
+    </tr>
+    <tr>
+      <td class = "rowNumber" style = "font-weight: bold; text-align: right;">3</td>
+      <td style = "text-align: right;">x₃</td>
+      <td style = "text-align: right;">2//1</td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr class = "header headerLastRow">
+      <th class = "rowNumber" style = "font-weight: bold; text-align: right;">E₁</th>
+      <th style = "text-align: right;">src₁</th>
+      <th style = "text-align: right;">tgt₁</th>
+      <th style = "text-align: right;">μ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class = "rowNumber" style = "font-weight: bold; text-align: right;">1</td>
+      <td style = "text-align: right;">1</td>
+      <td style = "text-align: right;">2</td>
+      <td style = "text-align: right;">7//1</td>
+    </tr>
+    <tr>
+      <td class = "rowNumber" style = "font-weight: bold; text-align: right;">2</td>
+      <td style = "text-align: right;">2</td>
+      <td style = "text-align: right;">3</td>
+      <td style = "text-align: right;">11//1</td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr class = "header headerLastRow">
+      <th class = "rowNumber" style = "font-weight: bold; text-align: right;">E₂</th>
+      <th style = "text-align: right;">src₂</th>
+      <th style = "text-align: right;">tgt₂</th>
+      <th style = "text-align: right;">f</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class = "rowNumber" style = "font-weight: bold; text-align: right;">1</td>
+      <td style = "text-align: right;">1</td>
+      <td style = "text-align: right;">2</td>
+      <td style = "text-align: right;">1//1</td>
+    </tr>
+    <tr>
+      <td class = "rowNumber" style = "font-weight: bold; text-align: right;">2</td>
+      <td style = "text-align: right;">2</td>
+      <td style = "text-align: right;">3</td>
+      <td style = "text-align: right;">2//1</td>
+    </tr>
+    <tr>
+      <td class = "rowNumber" style = "font-weight: bold; text-align: right;">3</td>
+      <td style = "text-align: right;">3</td>
+      <td style = "text-align: right;">3</td>
+      <td style = "text-align: right;">3//1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>We should visually inspect our model with graphviz rendering</p><pre><code class="language-julia hljs">to_graphviz(M)</code></pre><img src='data:image/svg+xml;utf-8,<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="410pt" height="129pt"
+ viewBox="0.00 0.00 410.18 129.39" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 125.39)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-125.39 406.18,-125.39 406.18,4 -4,4"/>
+<!-- n1 -->
+<g id="node1" class="node">
+<title>n1</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="44.2" cy="-44.2" rx="44.39" ry="44.39"/>
+<text text-anchor="middle" x="44.2" y="-40.5" font-family="Times,serif" font-size="14.00">x₁[1//2]</text>
+</g>
+<!-- n2 -->
+<g id="node2" class="node">
+<title>n2</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="196.59" cy="-44.2" rx="44.39" ry="44.39"/>
+<text text-anchor="middle" x="196.59" y="-40.5" font-family="Times,serif" font-size="14.00">x₂[1//3]</text>
+</g>
+<!-- n1&%2345;&gt;n2 -->
+<g id="edge1" class="edge">
+<title>n1&%2345;&gt;n2</title>
+<path fill="none" stroke="black" d="M88.7,-44.2C105.37,-44.2 124.6,-44.2 142.11,-44.2"/>
+<polygon fill="black" stroke="black" points="142.19,-47.7 152.19,-44.2 142.19,-40.7 142.19,-47.7"/>
+<text text-anchor="middle" x="120.39" y="-48" font-family="Times,serif" font-size="14.00">7//1</text>
+</g>
+<!-- n1&%2345;&gt;n2 -->
+<g id="edge3" class="edge">
+<title>n1&%2345;&gt;n2</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M85.95,-29.69C92.7,-27.83 99.68,-26.21 106.39,-25.2 118.7,-23.33 122.09,-23.33 134.39,-25.2 137.85,-25.72 141.38,-26.4 144.92,-27.2"/>
+<polygon fill="black" stroke="black" points="144.29,-30.65 154.84,-29.69 145.99,-23.86 144.29,-30.65"/>
+<text text-anchor="middle" x="120.39" y="-29" font-family="Times,serif" font-size="14.00">1//1</text>
+</g>
+<!-- n3 -->
+<g id="node3" class="node">
+<title>n3</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="357.98" cy="-44.2" rx="44.39" ry="44.39"/>
+<text text-anchor="middle" x="357.98" y="-40.5" font-family="Times,serif" font-size="14.00">x₃[2//1]</text>
+</g>
+<!-- n2&%2345;&gt;n3 -->
+<g id="edge2" class="edge">
+<title>n2&%2345;&gt;n3</title>
+<path fill="none" stroke="black" d="M241.14,-44.2C260.46,-44.2 283.37,-44.2 303.7,-44.2"/>
+<polygon fill="black" stroke="black" points="303.75,-47.7 313.75,-44.2 303.75,-40.7 303.75,-47.7"/>
+<text text-anchor="middle" x="277.28" y="-48" font-family="Times,serif" font-size="14.00">11//1</text>
+</g>
+<!-- n2&%2345;&gt;n3 -->
+<g id="edge4" class="edge">
+<title>n2&%2345;&gt;n3</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M238.34,-29.69C245.09,-27.83 252.08,-26.21 258.78,-25.2 275.04,-22.73 279.53,-22.73 295.78,-25.2 299.24,-25.72 302.78,-26.4 306.31,-27.2"/>
+<polygon fill="black" stroke="black" points="305.68,-30.65 316.23,-29.69 307.39,-23.86 305.68,-30.65"/>
+<text text-anchor="middle" x="277.28" y="-29" font-family="Times,serif" font-size="14.00">2//1</text>
+</g>
+<!-- n3&%2345;&gt;n3 -->
+<g id="edge5" class="edge">
+<title>n3&%2345;&gt;n3</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M343.07,-86.05C343.79,-97.58 348.76,-106.39 357.98,-106.39 364.32,-106.39 368.65,-102.23 370.97,-95.88"/>
+<polygon fill="black" stroke="black" points="374.41,-96.54 372.89,-86.05 367.54,-95.2 374.41,-96.54"/>
+<text text-anchor="middle" x="357.98" y="-110.19" font-family="Times,serif" font-size="14.00">3//1</text>
+</g>
+</g>
+</svg>
+'/><p>We can compute the dynamics equation from the model with <code>dynamics_expr</code></p><pre><code class="language-julia hljs">@show dynamics_expr(M)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">quote
+    #= /home/runner/work/AlgebraicMetabolism.jl/AlgebraicMetabolism.jl/src/AlgebraicMetabolism.jl:124 =#
+    d.x₁ = 0//1 * 1 * x₂ ^ 1//1 * 1 + 7//1 * 1 * 1 * x₃ ^ 2//1 + 0//1 * 1 * 1 * x₃ ^ 3//1
+    d.x₂ = 0//1 * 1 * x₂ ^ 1//1 * 1 + 0//1 * 1 * 1 * x₃ ^ 2//1 + 11//1 * 1 * 1 * x₃ ^ 3//1
+    d.x₃ = 0//1 * 1 * x₂ ^ 1//1 * 1 + 0//1 * 1 * 1 * x₃ ^ 2//1 + 0//1 * 1 * 1 * x₃ ^ 3//1
+end</code></pre><p>Because these models are defined as a presheaf category, they come with a lattice of subobjects. This works like subsets of a set, but will respect the connectivity structure of the model.</p><pre><code class="language-julia hljs">X1 = Subobject(M, V=[1])
+X2 = Subobject(M, V=[2])
+X3 = Subobject(M, V=[3])
+
+draw_subobject(join(join(X1, X2), X3))</code></pre><img src='data:image/svg+xml;utf-8,<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="96pt" height="308pt"
+ viewBox="0.00 0.00 96.39 308.39" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 304.39)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-304.39 92.39,-304.39 92.39,4 -4,4"/>
+<!-- n1 -->
+<g id="node1" class="node">
+<title>n1</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="44.2" cy="-44.2" rx="44.39" ry="44.39"/>
+<text text-anchor="middle" x="44.2" y="-40.5" font-family="Times,serif" font-size="14.00">x₁[1//2]</text>
+</g>
+<!-- n2 -->
+<g id="node2" class="node">
+<title>n2</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="44.2" cy="-150.2" rx="44.39" ry="44.39"/>
+<text text-anchor="middle" x="44.2" y="-146.5" font-family="Times,serif" font-size="14.00">x₂[1//3]</text>
+</g>
+<!-- n3 -->
+<g id="node3" class="node">
+<title>n3</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="44.2" cy="-256.2" rx="44.39" ry="44.39"/>
+<text text-anchor="middle" x="44.2" y="-252.5" font-family="Times,serif" font-size="14.00">x₃[2//1]</text>
+</g>
+</g>
+</svg>
+'/><p>From the isolate vertices shown above we can compute the &quot;model complement&quot; with the negation operator. For example, the complement of X3 is X1 and X2 and all their interactions.</p><pre><code class="language-julia hljs">negate(X3) |&gt; draw_subobject</code></pre><img src='data:image/svg+xml;utf-8,<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="249pt" height="96pt"
+ viewBox="0.00 0.00 248.78 96.39" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 92.39)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-92.39 244.78,-92.39 244.78,4 -4,4"/>
+<!-- n1 -->
+<g id="node1" class="node">
+<title>n1</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="44.2" cy="-44.2" rx="44.39" ry="44.39"/>
+<text text-anchor="middle" x="44.2" y="-40.5" font-family="Times,serif" font-size="14.00">x₁[1//2]</text>
+</g>
+<!-- n2 -->
+<g id="node2" class="node">
+<title>n2</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="196.59" cy="-44.2" rx="44.39" ry="44.39"/>
+<text text-anchor="middle" x="196.59" y="-40.5" font-family="Times,serif" font-size="14.00">x₂[1//3]</text>
+</g>
+<!-- n1&%2345;&gt;n2 -->
+<g id="edge1" class="edge">
+<title>n1&%2345;&gt;n2</title>
+<path fill="none" stroke="black" d="M88.7,-44.2C105.37,-44.2 124.6,-44.2 142.11,-44.2"/>
+<polygon fill="black" stroke="black" points="142.19,-47.7 152.19,-44.2 142.19,-40.7 142.19,-47.7"/>
+<text text-anchor="middle" x="120.39" y="-48" font-family="Times,serif" font-size="14.00">7//1</text>
+</g>
+<!-- n1&%2345;&gt;n2 -->
+<g id="edge2" class="edge">
+<title>n1&%2345;&gt;n2</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M85.95,-29.69C92.7,-27.83 99.68,-26.21 106.39,-25.2 118.7,-23.33 122.09,-23.33 134.39,-25.2 137.85,-25.72 141.38,-26.4 144.92,-27.2"/>
+<polygon fill="black" stroke="black" points="144.29,-30.65 154.84,-29.69 145.99,-23.86 144.29,-30.65"/>
+<text text-anchor="middle" x="120.39" y="-29" font-family="Times,serif" font-size="14.00">1//1</text>
+</g>
+</g>
+</svg>
+'/><p>And the complement of X1 is X2 and X3 with all their interactions.</p><pre><code class="language-julia hljs">negate(X1) |&gt; draw_subobject</code></pre><img src='data:image/svg+xml;utf-8,<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="258pt" height="129pt"
+ viewBox="0.00 0.00 257.78 129.39" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 125.39)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-125.39 253.78,-125.39 253.78,4 -4,4"/>
+<!-- n1 -->
+<g id="node1" class="node">
+<title>n1</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="44.2" cy="-44.2" rx="44.39" ry="44.39"/>
+<text text-anchor="middle" x="44.2" y="-40.5" font-family="Times,serif" font-size="14.00">x₂[1//3]</text>
+</g>
+<!-- n2 -->
+<g id="node2" class="node">
+<title>n2</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="205.59" cy="-44.2" rx="44.39" ry="44.39"/>
+<text text-anchor="middle" x="205.59" y="-40.5" font-family="Times,serif" font-size="14.00">x₃[2//1]</text>
+</g>
+<!-- n1&%2345;&gt;n2 -->
+<g id="edge1" class="edge">
+<title>n1&%2345;&gt;n2</title>
+<path fill="none" stroke="black" d="M88.75,-44.2C108.07,-44.2 130.98,-44.2 151.31,-44.2"/>
+<polygon fill="black" stroke="black" points="151.36,-47.7 161.36,-44.2 151.36,-40.7 151.36,-47.7"/>
+<text text-anchor="middle" x="124.89" y="-48" font-family="Times,serif" font-size="14.00">11//1</text>
+</g>
+<!-- n1&%2345;&gt;n2 -->
+<g id="edge2" class="edge">
+<title>n1&%2345;&gt;n2</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M85.95,-29.69C92.7,-27.83 99.68,-26.21 106.39,-25.2 122.65,-22.73 127.13,-22.73 143.39,-25.2 146.85,-25.72 150.38,-26.4 153.92,-27.2"/>
+<polygon fill="black" stroke="black" points="153.29,-30.65 163.84,-29.69 154.99,-23.86 153.29,-30.65"/>
+<text text-anchor="middle" x="124.89" y="-29" font-family="Times,serif" font-size="14.00">2//1</text>
+</g>
+<!-- n2&%2345;&gt;n2 -->
+<g id="edge3" class="edge">
+<title>n2&%2345;&gt;n2</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M190.68,-86.05C191.4,-97.58 196.37,-106.39 205.59,-106.39 211.93,-106.39 216.26,-102.23 218.58,-95.88"/>
+<polygon fill="black" stroke="black" points="222.01,-96.54 220.5,-86.05 215.14,-95.2 222.01,-96.54"/>
+<text text-anchor="middle" x="205.59" y="-110.19" font-family="Times,serif" font-size="14.00">3//1</text>
+</g>
+</g>
+</svg>
+'/><p>The meet and join operators play the role of union and intersection</p><pre><code class="language-julia hljs">meet(negate(X3), negate(X1)) |&gt; draw_subobject</code></pre><img src='data:image/svg+xml;utf-8,<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="96pt" height="96pt"
+ viewBox="0.00 0.00 96.39 96.39" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 92.39)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-92.39 92.39,-92.39 92.39,4 -4,4"/>
+<!-- n1 -->
+<g id="node1" class="node">
+<title>n1</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="44.2" cy="-44.2" rx="44.39" ry="44.39"/>
+<text text-anchor="middle" x="44.2" y="-40.5" font-family="Times,serif" font-size="14.00">x₂[1//3]</text>
+</g>
+</g>
+</svg>
+'/><p>But I always forget which is which!</p><pre><code class="language-julia hljs">join(negate(X3), negate(X1)) |&gt; draw_subobject</code></pre><img src='data:image/svg+xml;utf-8,<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="410pt" height="129pt"
+ viewBox="0.00 0.00 410.18 129.39" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 125.39)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-125.39 406.18,-125.39 406.18,4 -4,4"/>
+<!-- n1 -->
+<g id="node1" class="node">
+<title>n1</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="44.2" cy="-44.2" rx="44.39" ry="44.39"/>
+<text text-anchor="middle" x="44.2" y="-40.5" font-family="Times,serif" font-size="14.00">x₁[1//2]</text>
+</g>
+<!-- n2 -->
+<g id="node2" class="node">
+<title>n2</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="196.59" cy="-44.2" rx="44.39" ry="44.39"/>
+<text text-anchor="middle" x="196.59" y="-40.5" font-family="Times,serif" font-size="14.00">x₂[1//3]</text>
+</g>
+<!-- n1&%2345;&gt;n2 -->
+<g id="edge1" class="edge">
+<title>n1&%2345;&gt;n2</title>
+<path fill="none" stroke="black" d="M88.7,-44.2C105.37,-44.2 124.6,-44.2 142.11,-44.2"/>
+<polygon fill="black" stroke="black" points="142.19,-47.7 152.19,-44.2 142.19,-40.7 142.19,-47.7"/>
+<text text-anchor="middle" x="120.39" y="-48" font-family="Times,serif" font-size="14.00">7//1</text>
+</g>
+<!-- n1&%2345;&gt;n2 -->
+<g id="edge3" class="edge">
+<title>n1&%2345;&gt;n2</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M85.95,-29.69C92.7,-27.83 99.68,-26.21 106.39,-25.2 118.7,-23.33 122.09,-23.33 134.39,-25.2 137.85,-25.72 141.38,-26.4 144.92,-27.2"/>
+<polygon fill="black" stroke="black" points="144.29,-30.65 154.84,-29.69 145.99,-23.86 144.29,-30.65"/>
+<text text-anchor="middle" x="120.39" y="-29" font-family="Times,serif" font-size="14.00">1//1</text>
+</g>
+<!-- n3 -->
+<g id="node3" class="node">
+<title>n3</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="357.98" cy="-44.2" rx="44.39" ry="44.39"/>
+<text text-anchor="middle" x="357.98" y="-40.5" font-family="Times,serif" font-size="14.00">x₃[2//1]</text>
+</g>
+<!-- n2&%2345;&gt;n3 -->
+<g id="edge2" class="edge">
+<title>n2&%2345;&gt;n3</title>
+<path fill="none" stroke="black" d="M241.14,-44.2C260.46,-44.2 283.37,-44.2 303.7,-44.2"/>
+<polygon fill="black" stroke="black" points="303.75,-47.7 313.75,-44.2 303.75,-40.7 303.75,-47.7"/>
+<text text-anchor="middle" x="277.28" y="-48" font-family="Times,serif" font-size="14.00">11//1</text>
+</g>
+<!-- n2&%2345;&gt;n3 -->
+<g id="edge4" class="edge">
+<title>n2&%2345;&gt;n3</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M238.34,-29.69C245.09,-27.83 252.08,-26.21 258.78,-25.2 275.04,-22.73 279.53,-22.73 295.78,-25.2 299.24,-25.72 302.78,-26.4 306.31,-27.2"/>
+<polygon fill="black" stroke="black" points="305.68,-30.65 316.23,-29.69 307.39,-23.86 305.68,-30.65"/>
+<text text-anchor="middle" x="277.28" y="-29" font-family="Times,serif" font-size="14.00">2//1</text>
+</g>
+<!-- n3&%2345;&gt;n3 -->
+<g id="edge5" class="edge">
+<title>n3&%2345;&gt;n3</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M343.07,-86.05C343.79,-97.58 348.76,-106.39 357.98,-106.39 364.32,-106.39 368.65,-102.23 370.97,-95.88"/>
+<polygon fill="black" stroke="black" points="374.41,-96.54 372.89,-86.05 367.54,-95.2 374.41,-96.54"/>
+<text text-anchor="middle" x="357.98" y="-110.19" font-family="Times,serif" font-size="14.00">3//1</text>
+</g>
+</g>
+</svg>
+'/><p>Most of your propositional logic rules apply in this lattice.</p><pre><code class="language-julia hljs">is_subobject(X3, negate(join(X1, X2)))</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">true</code></pre><p>The biggest difference is that double negation is not the identity. While join(X1,X2) has 2 vertices and no edges, ¬¬(X1 ∨ X2) has 2 vertices and 2 edges! Double negation can be used to define the &quot;induced subgraph&quot; operator for any class of models.</p><pre><code class="language-julia hljs">negate(negate(join(X1, X2))) |&gt; draw_subobject</code></pre><img src='data:image/svg+xml;utf-8,<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="249pt" height="96pt"
+ viewBox="0.00 0.00 248.78 96.39" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 92.39)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-92.39 244.78,-92.39 244.78,4 -4,4"/>
+<!-- n1 -->
+<g id="node1" class="node">
+<title>n1</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="44.2" cy="-44.2" rx="44.39" ry="44.39"/>
+<text text-anchor="middle" x="44.2" y="-40.5" font-family="Times,serif" font-size="14.00">x₁[1//2]</text>
+</g>
+<!-- n2 -->
+<g id="node2" class="node">
+<title>n2</title>
+<ellipse fill="%236c9ac3" stroke="%236c9ac3" cx="196.59" cy="-44.2" rx="44.39" ry="44.39"/>
+<text text-anchor="middle" x="196.59" y="-40.5" font-family="Times,serif" font-size="14.00">x₂[1//3]</text>
+</g>
+<!-- n1&%2345;&gt;n2 -->
+<g id="edge1" class="edge">
+<title>n1&%2345;&gt;n2</title>
+<path fill="none" stroke="black" d="M88.7,-44.2C105.37,-44.2 124.6,-44.2 142.11,-44.2"/>
+<polygon fill="black" stroke="black" points="142.19,-47.7 152.19,-44.2 142.19,-40.7 142.19,-47.7"/>
+<text text-anchor="middle" x="120.39" y="-48" font-family="Times,serif" font-size="14.00">7//1</text>
+</g>
+<!-- n1&%2345;&gt;n2 -->
+<g id="edge2" class="edge">
+<title>n1&%2345;&gt;n2</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M85.95,-29.69C92.7,-27.83 99.68,-26.21 106.39,-25.2 118.7,-23.33 122.09,-23.33 134.39,-25.2 137.85,-25.72 141.38,-26.4 144.92,-27.2"/>
+<polygon fill="black" stroke="black" points="144.29,-30.65 154.84,-29.69 145.99,-23.86 144.29,-30.65"/>
+<text text-anchor="middle" x="120.39" y="-29" font-family="Times,serif" font-size="14.00">1//1</text>
+</g>
+</g>
+</svg>
+'/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../">« AlgebraicMetabolism.jl</a><a class="docs-footer-nextpage" href="../pullbacks/">Stratification »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Saturday 15 July 2023 17:34">Saturday 15 July 2023</span>. Using Julia version 1.9.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
