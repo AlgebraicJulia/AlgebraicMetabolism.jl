@@ -10,4 +10,5 @@ Literate = "98b081ad-f1c9-55d3-8b20-4c87d4299306"
 
 [compat]
 Catlab = "0.15"
+Literate = "2"
 julia = "1.9"
