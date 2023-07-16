@@ -45,6 +45,9 @@ makedocs(
       "generated/literate_example.md",
       "generated/composition.md",
       "generated/pullbacks.md",
+      "generated/SSystems/literate_example.md",
+      "generated/SSystems/composition.md",
+      "generated/SSystems/pullbacks.md",
     ],
     "Library Reference"=>"api.md",
   ]

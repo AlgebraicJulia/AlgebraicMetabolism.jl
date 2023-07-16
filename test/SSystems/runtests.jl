@@ -9,7 +9,3 @@ end
 @testset "Composition" begin
   include("composition.jl")
 end
-
-@testset "SSystems" begin
-  include("SSystems/runtests.jl")
-end

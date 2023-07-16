@@ -100,5 +100,5 @@ edges₂(m::ReactionMetabolicNet, i::Int, j::Int) = intersect(
 include("dynamics.jl")
 include("graphics.jl")
 include("composition.jl")
-
+include("SSystems/SSystems.jl")
 end
