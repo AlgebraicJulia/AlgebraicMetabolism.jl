@@ -1,5 +1,5 @@
 # Library Reference
 
 ```@autodocs
-Modules = [AlgebraicMetabolism]
+Modules = [AlgebraicMetabolism, AlgebraicMetabolism.SSystems]
 ```

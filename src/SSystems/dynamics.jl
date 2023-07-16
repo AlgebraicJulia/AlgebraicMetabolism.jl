@@ -40,7 +40,7 @@ end
 Build the expression for an S-System from the combinatorial data.
 The expression we want to build is equivalent to:
 
-``\frac{d}{dt} X_i = \alpha_i \prod_j X_j^{g_{i,j}} - \beta_i\prod_j X^{h_{i,j}}
+``\frac{d}{dt} X_i = \alpha_i \prod_j X_j^{g_{i,j}} - \beta_i\prod_j X^{h_{i,j}}``
 
 This formula evaluates the dynamics of the system.
 """
