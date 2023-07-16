@@ -56,7 +56,7 @@ The main entry type for building a metabolic model with fixed parameters baked i
 const System{R} = SystemUntyped{Symbol, R}
 
 null_attrs(m::MetabolicNet) = begin
-  M = AlgebraicMetabolism.SystemUntyped{Symbol,Any}() 
+  M = SystemUntyped{Symbol,Any}() 
   copy_parts!(M,m)
   return M
 end

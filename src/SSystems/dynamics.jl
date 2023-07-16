@@ -8,22 +8,23 @@ function dynamics_expr(m::System, key::Symbol, i::Int)
         gij != 0 ? :($xj ^ $gij) : nothing
       end
       terms = filter!(!isnothing, terms)
-      return αᵢ, terms
+      αᵢ, terms
     end
     :β => begin
-      βᵢ = -m[i,:β]
+      βᵢ = m[i,:β]
       terms = map(parts(m, :V)) do j
         xj = m[j, :vname]
         hij = sum(m[e, :h] for e in edges₂(m, i,j); init=0)
         hij != 0 ? :($xj ^ $hij) : nothing
       end
       terms = filter!(!isnothing, terms)
-      return βᵢ, terms
+      βᵢ, terms
     end
   end
+  terms = terms
   length(terms) > 0 ?
-    :($factor * (*($(terms...)))) :
-    :$(factor)
+    :(*($factor, $(terms...))) :
+    :($factor)
 end
 
 function dynamics_expr(m::System, i::Int)
@@ -31,7 +32,7 @@ function dynamics_expr(m::System, i::Int)
     dynamics_expr(m, key, i)
   end
   xi = m[i,:vname]
-  :(d.$xi = +($(summands...)))
+  :(d.$xi = $(summands[1]) - $(summands[2]))
 end
 
 @doc raw"""    dynamics_expr(m::System)

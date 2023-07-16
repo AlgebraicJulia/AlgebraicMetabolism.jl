@@ -12,28 +12,25 @@ M = @acset System{Rational} begin
   E₁ = 2
   E₂ = 3
   vname = [:x₁, :x₂, :x₃]
-  γ = [1//2, 1//3, 2]
+  α = [1//2, 1//2, 2]
+  β = [1//3, 1//5, 2//5]
 
   src₁ = [1,2]
   tgt₁ = [2,3]
-  μ = [7,11]
+  g = [7,11]
 
   src₂ = [1,2,3]
   tgt₂ = [2,3,3]
-  f = [1,2,3]
+  h = [1,2,3]
 end
 
 display(M)
 
-@show dynamics_expr(M)
-@show dynamics_expr(M, 1,2,3)
-@show map(parts(M,:V)) do j
-  dynamics_expr(M, 1,j)
+@show SSystems.dynamics_expr(M)
+@show map(parts(M,:V)) do i
+  SSystems.dynamics_expr(M, i)
 end
 
-@show map(parts(M,:V)) do i
-  dynamics_expr(M, i)
-end
 
 to_graphviz(M)
 
@@ -42,7 +39,7 @@ X2 = Subobject(M, V=[2])
 X3 = Subobject(M, V=[3]) 
 
 
-
+import AlgebraicMetabolism.SSystems: draw_subobject, is_subobject, MetabolicNet
 
 @testset "Subobject Biheyting Algebra" begin
   draw_subobject(Subobject(M, V=[1,2]))
