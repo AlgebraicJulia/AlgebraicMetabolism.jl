@@ -11,7 +11,6 @@ using Catlab.Graphics
 using Catlab.Graphics.Graphviz
 using Test
 
-@acset_type MetabolicNet(SchMetabolicNet, index=[]) <: AbstractMetabolicNet
 
 
 M = @acset MetabolicNet begin
