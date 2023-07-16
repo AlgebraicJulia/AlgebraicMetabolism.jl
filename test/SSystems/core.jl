@@ -1,3 +1,4 @@
+using AlgebraicMetabolism
 using AlgebraicMetabolism.SSystems
 using Catlab
 using Catlab.ACSets
@@ -38,8 +39,6 @@ X1 = Subobject(M, V=[1])
 X2 = Subobject(M, V=[2]) 
 X3 = Subobject(M, V=[3]) 
 
-
-import AlgebraicMetabolism.SSystems: draw_subobject, is_subobject, MetabolicNet
 
 @testset "Subobject Biheyting Algebra" begin
   draw_subobject(Subobject(M, V=[1,2]))
@@ -83,7 +82,7 @@ end
   β = [:β1,:β2,:β3]
   g = [Symbol("g1,2"), Symbol("g2,3")]
   h = [Symbol("h1,2"), Symbol("h2,3"), Symbol("h3,3")]
-  Mₘ  = SSystems.default_attrs(m)
+  Mₘ  = default_attrs(System, m)
   @test Mₘ[:,:vname] == vname
   @test Mₘ[:,:α] == α
   @test Mₘ[:,:β] == β

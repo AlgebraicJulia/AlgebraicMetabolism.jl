@@ -1,3 +1,4 @@
+using AlgebraicMetabolism
 using AlgebraicMetabolism.SSystems
 using Catlab
 using Catlab.ACSets
@@ -45,3 +46,7 @@ M₄ = oapply(d,[M₂ꜛ, Mₒ])
 @test nparts(apex(M₄), :V) == 4
 @test nparts(apex(M₄), :E₁) == 9
 @test nparts(apex(M₄), :E₂) == 9
+
+S₄ = default_attrs(System, apex(M₄))
+
+@test S₄[:h] == [Symbol("h1,1"), Symbol("h2,2"), Symbol("h1,2"), Symbol("h3,3"), Symbol("h2,2"), Symbol("h3,2"), Symbol("h3,3"), Symbol("h4,4"), Symbol("h3,4")]

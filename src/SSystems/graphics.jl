@@ -7,9 +7,6 @@ const GRAPH_ATTRS = Dict(:rankdir=>"LR")
 const NODE_ATTRS = Dict(:shape => "plain", :style=>"filled")
 const EDGE_ATTRS = Dict(:splines=>"splines")
 
-Graphics.to_graphviz(m::AbstractMetabolicNet; kw...) =
-  to_graphviz(to_graphviz_property_graph(m; kw...))
-
 function Graphics.to_graphviz_property_graph(m::AbstractSystem;
   prog::AbstractString="dot", graph_attrs::AbstractDict=Dict(),
   node_attrs::AbstractDict=Dict(), edge_attrs::AbstractDict=Dict(), name::AbstractString="G", kw...)

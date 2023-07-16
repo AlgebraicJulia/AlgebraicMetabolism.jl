@@ -1,8 +1,4 @@
-export OpenMetabolicNetOb, OpenMetabolicNet
-
-const OpenMetabolicNetOb, OpenMetabolicNet = OpenACSetTypes(MetabolicNet, :V)
-
-# Open networks with numeric parameters
+# Open SSystems with numeric parameters
 const OpenSystemObUntyped, OpenSystemUntyped = OpenACSetTypes(SystemUntyped, :V)
 
 # Fix the default Name type to Symbol

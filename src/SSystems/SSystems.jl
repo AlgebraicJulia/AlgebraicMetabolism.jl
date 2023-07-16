@@ -7,28 +7,16 @@ using Catlab.ACSets
 using Catlab.CategoricalAlgebra
 using MLStyle
 
-export draw_subobject, is_subobject,
- SchMetabolicNet, SchSystem,
- AbstractMetabolicNet, AbstractSystem,
- MetabolicNet,
- System, dynamics_expr,
- null_attrs, default_attrs
+import ..dynamics_expr
+import ..SchMetabolicNet
+import ..MetabolicNet
+import ..AbstractMetabolicNet
+import ..null_attrs
+import ..default_attrs
 
-draw_subobject = to_graphviz ∘ dom ∘ hom
-is_subobject(X::Subobject,Y::Subobject) = force(meet(X,Y)) == force(X)
+export SchSystem, AbstractSystem, System
 
-""" ACSet definition for a Biochemical Systems Theory model
 
-See Catlab.jl documentation for description of the @present syntax.
-"""
-@present SchMetabolicNet(FreeSchema) begin
-  (V, E₁, E₂)::Ob
-  src₁::Hom(E₁, V)
-  tgt₁::Hom(E₁, V)
-
-  src₂::Hom(E₂, V)
-  tgt₂::Hom(E₂, V)
-end
 
 @present SchSystem <: SchMetabolicNet begin
   Name::AttrType
@@ -43,10 +31,7 @@ end
   h::Attr(E₂, Number) # repression coefficients
 end
 
-@abstract_acset_type AbstractMetabolicNet
 @abstract_acset_type AbstractSystem <: AbstractMetabolicNet
-
-@acset_type MetabolicNet(SchMetabolicNet, index=[]) <: AbstractMetabolicNet
 @acset_type SystemUntyped(SchSystem, index=[]) <: AbstractSystem
 
 """    System{R} 
@@ -55,14 +40,14 @@ The main entry type for building a metabolic model with fixed parameters baked i
 """
 const System{R} = SystemUntyped{Symbol, R}
 
-null_attrs(m::MetabolicNet) = begin
+null_attrs(::Type{T}, m::MetabolicNet) where T <: AbstractSystem = begin
   M = SystemUntyped{Symbol,Any}() 
   copy_parts!(M,m)
   return M
 end
 
-default_attrs(m::MetabolicNet) = begin
-  M = null_attrs(m)
+default_attrs(::Type{T}, m::MetabolicNet) where T <: AbstractSystem = begin
+  M = null_attrs(T, m)
   M[:vname] = map(parts(m,:V)) do i
     Symbol("X$i")
   end
