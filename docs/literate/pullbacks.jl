@@ -11,7 +11,6 @@ using Catlab.Graphics
 using Catlab.Graphics.Graphviz
 using Test
 
-@acset_type MetabolicNet(SchMetabolicNet, index=[]) <: AbstractMetabolicNet
 
 
 M = @acset MetabolicNet begin
@@ -29,14 +28,13 @@ end
 # Now we can compute the product model to get a model with 2×2=4 states.
 
 M² = product(M,M)
-P = ReactionMetabolicNet{Rational}()
-copy_parts!(P, apex(M²))
-to_graphviz(P)
-
+to_graphviz(default_attrs(apex(M²)))
 
 # We need to propagate the attributes from the factor models to the product model.
 # We start with the attributes for the original two models.
 
+P = ReactionMetabolicNet{Rational}()
+copy_parts!(P, apex(M²))
 vnames₁ = [:x1, :x2]
 γ₁ = [1//2, 1//3]
 μ₁ = [2,3,5]
