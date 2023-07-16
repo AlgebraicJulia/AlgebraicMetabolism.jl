@@ -66,3 +66,28 @@ X3 = Subobject(M, V=[3])
   @test force(meet(X3, negate(X1))) == force(X3)
   @test dom(hom(negate(meet(X1, X2)))) == M
 end
+
+
+m = @acset MetabolicNet begin
+  V = 3
+  E₁ = 2
+  E₂ = 3
+
+  src₁ = [1,2]
+  tgt₁ = [2,3]
+
+  src₂ = [1,2,3]
+  tgt₂ = [2,3,3]
+end
+
+@testset "Default Attributes" begin
+  vname = [:X1, :X2, :X3]
+  γ = [:γ1,:γ2,:γ3]
+  μ = [Symbol("μ1,2"), Symbol("μ2,3")]
+  f = [Symbol("f1,2"), Symbol("f2,3"), Symbol("f3,3")]
+  Mₘ  = default_attrs(m)
+  @test Mₘ[:,:vname] == vname
+  @test Mₘ[:,:γ] == γ
+  @test Mₘ[:,:μ] == μ
+  @test Mₘ[:,:f] == f
+end
