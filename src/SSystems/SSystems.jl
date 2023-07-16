@@ -1,16 +1,17 @@
 """ Some description of ths package
 """
-module AlgebraicMetabolism
+module SSystems
 
 using Catlab
 using Catlab.ACSets
 using Catlab.CategoricalAlgebra
+using MLStyle
 
 export draw_subobject, is_subobject,
- SchMetabolicNet, SchReactionMetabolicNet, 
- AbstractMetabolicNet, AbstractReactionMetabolicNet,
+ SchMetabolicNet, SchSystem,
+ AbstractMetabolicNet, AbstractSystem,
  MetabolicNet,
- ReactionMetabolicNet, dynamics_expr,
+ System, dynamics_expr,
  null_attrs, default_attrs
 
 draw_subobject = to_graphviz ∘ dom ∘ hom
@@ -29,32 +30,33 @@ See Catlab.jl documentation for description of the @present syntax.
   tgt₂::Hom(E₂, V)
 end
 
-@present SchReactionMetabolicNet <: SchMetabolicNet begin
+@present SchSystem <: SchMetabolicNet begin
   Name::AttrType
 
   vname::Attr(V, Name)
 
   Number::AttrType
-  γ::Attr(V, Number)
-  μ::Attr(E₁, Number)
-  f::Attr(E₂, Number)
+  α::Attr(V, Number) # activation coefficients
+  β::Attr(V, Number) # repression coefficients
 
+  g::Attr(E₁, Number) # activation exponents
+  h::Attr(E₂, Number) # repression coefficients
 end
 
 @abstract_acset_type AbstractMetabolicNet
-@abstract_acset_type AbstractReactionMetabolicNet <: AbstractMetabolicNet
+@abstract_acset_type AbstractSystem <: AbstractMetabolicNet
 
 @acset_type MetabolicNet(SchMetabolicNet, index=[]) <: AbstractMetabolicNet
-@acset_type ReactionNetUntyped(SchReactionMetabolicNet, index=[]) <: AbstractReactionMetabolicNet
+@acset_type SystemUntyped(SchSystem, index=[]) <: AbstractSystem
 
-"""    ReactionMetabolicNet{R} 
+"""    System{R} 
 
 The main entry type for building a metabolic model with fixed parameters baked in.
 """
-const ReactionMetabolicNet{R} = ReactionNetUntyped{Symbol, R}
+const System{R} = SystemUntyped{Symbol, R}
 
 null_attrs(m::MetabolicNet) = begin
-  M = AlgebraicMetabolism.ReactionNetUntyped{Symbol,Any}() 
+  M = AlgebraicMetabolism.SystemUntyped{Symbol,Any}() 
   copy_parts!(M,m)
   return M
 end
@@ -64,35 +66,38 @@ default_attrs(m::MetabolicNet) = begin
   M[:vname] = map(parts(m,:V)) do i
     Symbol("X$i")
   end
-  M[:γ] = map(parts(M,:V)) do v
-    Symbol("γ$v")
+  M[:α] = map(parts(M,:V)) do v
+    Symbol("α$v")
   end
-  M[:μ] = map(parts(M,:E₁)) do e
+  M[:β] = map(parts(M,:V)) do v
+    Symbol("β$v")
+  end
+  M[:g] = map(parts(M,:E₁)) do e
     s,t = M[e,:src₁],M[e,:tgt₁]
-    Symbol("μ$s,$t")
+    Symbol("g$s,$t")
   end
-  M[:f] = map(parts(M,:E₂)) do e
+  M[:h] = map(parts(M,:E₂)) do e
     s,t = M[e,:src₂],M[e,:tgt₂]
-    Symbol("f$s,$t")
+    Symbol("h$s,$t")
   end
 
   return M
 end
 
-"""    edges₁(m::ReactionMetabolicNet, i::Int, j::Int)
+"""    edges₁(m::AbstractMetabolicNet, i::Int, j::Int)
 
 access a vector of the E₁ edges between vertex i and vertex j.
 """
-edges₁(m::ReactionMetabolicNet, i::Int, j::Int) = intersect(
+edges₁(m::AbstractMetabolicNet, i::Int, j::Int) = intersect(
   incident(m, i, :src₁),
   incident(m, j, :tgt₁)
 )
 
-"""    edges₂(m::ReactionMetabolicNet, i::Int, j::Int)
+"""    edges₂(m::AbstractMetabolicNet, i::Int, j::Int)
 
 access a vector of the E₂ edges between vertex i and vertex j.
 """
-edges₂(m::ReactionMetabolicNet, i::Int, j::Int) = intersect(
+edges₂(m::AbstractMetabolicNet, i::Int, j::Int) = intersect(
   incident(m, i, :src₂),
   incident(m, j, :tgt₂)
 )

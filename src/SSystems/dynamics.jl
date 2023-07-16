@@ -1,45 +1,49 @@
-function dynamics_expr(m::ReactionMetabolicNet, i::Int, j::Int, k::Int)
-  edges = edges₂(m, j,k)
-  if length(edges) == 0
-    1
-  else
-    f = sum(m[edges, :f])
-    xk = m[k, :vname]
-    :(($xk)^$f)
+function dynamics_expr(m::System, key::Symbol, i::Int)
+  factor, terms = @match key begin
+    :α => begin
+      αᵢ = m[i,:α]
+      terms = map(parts(m, :V)) do j
+        xj = m[j, :vname]
+        gij = sum(m[e, :g] for e in edges₁(m, i,j); init=0)
+        gij != 0 ? :($xj ^ $gij) : nothing
+      end
+      terms = filter!(!isnothing, terms)
+      return αᵢ, terms
+    end
+    :β => begin
+      βᵢ = -m[i,:β]
+      terms = map(parts(m, :V)) do j
+        xj = m[j, :vname]
+        hij = sum(m[e, :h] for e in edges₂(m, i,j); init=0)
+        hij != 0 ? :($xj ^ $hij) : nothing
+      end
+      terms = filter!(!isnothing, terms)
+      return βᵢ, terms
+    end
   end
+  length(terms) > 0 ?
+    :($factor * (*($(terms...)))) :
+    :$(factor)
 end
 
-function dynamics_expr(m::ReactionMetabolicNet, i::Int, j::Int)
-  e = edges₁(m, i, j)
-  μ = sum(m[e, :μ])
-  γ = m[j, :γ]
-  factors = map(parts(m,:V)) do k
-    dynamics_expr(m, i,j,k)
-  end
-  :(*($μ, $(factors...)))
-end
-
-function dynamics_expr(m::ReactionMetabolicNet, i::Int)
-  summands = map(parts(m,:V)) do j
-    dynamics_expr(m, i,j)
+function dynamics_expr(m::System, i::Int)
+  summands = map([:α, :β]) do key
+    dynamics_expr(m, key, i)
   end
   xi = m[i,:vname]
   :(d.$xi = +($(summands...)))
 end
 
-@doc raw"""    dynamics_expr(m::ReactionMetabolicNet)
+@doc raw"""    dynamics_expr(m::System)
 
-Build the expression for a reaction net from the combinatorial data.
+Build the expression for an S-System from the combinatorial data.
 The expression we want to build is equivalent to:
 
-    dxi = sum(μ[i,j] ⋅ γ[j] ⋅ prod(X[k]^f[j,k] for k in 1:N) for j in 1:N)
-
-``\frac{d}{dt} X_i = \sum_j(\mu_{i,j} \cdot \gamma_j \cdot \prod_k X_k^f_{j,k}``
+``\frac{d}{dt} X_i = \alpha_i \prod_j X_j^{g_{i,j}} - \beta_i\prod_j X^{h_{i,j}}
 
 This formula evaluates the dynamics of the system.
 """
-function dynamics_expr(m::ReactionMetabolicNet)
-  N = nparts(m, :V)
+function dynamics_expr(m::System)
   lines = map(parts(m, :V)) do i
     dynamics_expr(m, i)
   end

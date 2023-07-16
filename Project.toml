@@ -7,6 +7,7 @@ version = "0.0.1"
 [deps]
 Catlab = "134e5e36-593f-5add-ad60-77f754baafbe"
 Literate = "98b081ad-f1c9-55d3-8b20-4c87d4299306"
+MLStyle = "d8e11817-5142-5d16-987a-aa16d5891078"
 
 [compat]
 Catlab = "0.15"
